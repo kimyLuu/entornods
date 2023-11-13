@@ -1,4 +1,6 @@
 <?php
+//Namespace
+namespace Core;
 
 
 /*
@@ -24,7 +26,7 @@ http://mvc.local/user/show/1
                //obtener controlador
                $controllerName= array_shift($arguments);// con esto tendrias user|home | producto
                                             //con esto llamas a la clase UserController , ProductController
-               $controllName = ucwords($controllerName) . "Controller";
+               $controllerName = ucwords($controllerName) . "Controller";
 
                //Transfrmacion para los metodos
                //Se creara un contador para ver si el  usuario  tiene mas busquedas en la url
@@ -45,7 +47,12 @@ http://mvc.local/user/show/1
 
                //Importar el controlador
                //cada clase esta asociada a un fichero
-               $file = "../app/Controllers/$controllerName" .",php";
+               $file = "../app/Controllers/$controllerName" .".php";
+
+//Se esta insertsndo el Dwes 
+
+
+               //var_dump($file);
                //si el fichero esxite 
                if(file_exists($file)){
                 //Lo importamos
@@ -57,9 +64,11 @@ http://mvc.local/user/show/1
                 die( "Adioss"); //Para de ejecutar se acabo el programa;
                }
 
-               //ccrear instancia del controlador yy llamar al metodo correspondiente
-               $controllerObject = new $controllerName;
-               //Verificar si existe el metodo de  la peticon en la clase/controlador
+               //ccrear instancia del controlador y llamar al metodo correspondiente
+              $controllerName ="\\App\\Controllers\\".$controllerName;
+
+               $controllerObject = new $controllerName; // new \App\UserControllers
+               //Verificar si existe el metodo de  la peticion en la clase/controlador
                if(method_exists($controllerObject , $method)){
                         //invocarlo
                     $controllerObject -> $method($arguments);

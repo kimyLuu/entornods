@@ -34,6 +34,7 @@
     \Dwes\Galaxiaenana\galaxia::muerte();
 
     //Importamos la clase para evitar llamar a cada rato El new \Dwes\Galaxiaenana\galaxia();
+    //El use es oara referenciar con user 
 
     use function \Dwes\Galaxiaenana\observar;
     use const \Dwes\Galaxiaenana\RADIO;
@@ -58,6 +59,6 @@ mirar ("cometa halley");
     //Las funciones glases ,.... que no se denomina en un namespace 
     
     // la barra es para indicar que tiime es para que te saque la funcion de time de la funcion de php y no la funcion del NAmespace de la clase
-    echo \time();
+    echo time();
     echo "</hr>";
-    echo "<br> Time de la galaxia". time();
+    echo "<br> Time de la galaxia". \time();//Namespace global \

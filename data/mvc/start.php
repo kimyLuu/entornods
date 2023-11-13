@@ -1,5 +1,6 @@
 <?php
+//Importo el fichero
     require "core/App.php";
 
-    $app = new App(); //Crea el enrutador
+    $app = new Core\App(); //Crea el enrutador
     
