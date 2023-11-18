@@ -6,6 +6,7 @@ namespace App\Models;
 
 require "../core/Model.php";
 use Core\Model;//Importamos el fichero
+use PDO;
 
 
 //En esta clase se 
@@ -13,11 +14,19 @@ class User extends Model{
   
         //Extraigo todos los registros de user de la tabla user
         public static function all(){
-            /*
-            $dbh = User::db();//lamo al methodo estatico  otra manera es self::db();
-            $sql = "SELECT *  FROM users";
-            $stament =$dbh ->query($sql);
-        */
+
+            $dbh =User::db();
+            $sql ="SELECT *FROM users";
+            $statement = $dbh ->query($sql);
+            //$statement ->setFetchMode(PDO::FETCH_CLASS, "User:class");
+            $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+            $users=$statement->fetchAll(PDO::FETCH_CLASS); //Recupero todo
+            return $users ;//Devuelvo todos los usuarios en array
+
+            //Una vez que tengo todos me voy al al modelo USercontroller
+
+            //se va a cargar los atributos de esa clase
+
         echo "<br> Recupero un usuario";
         
     }//fin class

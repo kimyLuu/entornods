@@ -20,4 +20,17 @@ CON ESTOO SE VERIFICA QUE FUNCIONAENL MODEL
 
     $user->insert();
     
-*/
+
+require "app/Controllers/UserController.php";
+use App\Controllers\UserController;
+
+    $user = new UserController();
+
+    $user->index();
+    */
+
+    require "core/App.php";
+     $app = new Core\App(); 
+   
+    
+
