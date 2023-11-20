@@ -72,6 +72,7 @@ http://mvc.local/user/show/1
                if(method_exists($controllerObject , $method)){
                         //invocarlo
                     $controllerObject -> $method($arguments);
+                    //count($arguments);
                }else{
                 http_response_code(404);
                 echo "Funcion no encontrado";

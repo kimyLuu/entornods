@@ -10,14 +10,16 @@ class HomeController{
     }
     
     function index(){
-        echo "<br> En e INDEX de HOME";
+        //echo "<br> En e INDEX de HOME";
+        require "../Views/home/index.php";
     }
     function show(){
-        echo "<br> En de SHOW de HOME";
+        //echo "<br> En de SHOW de HOME";
+        require "../Views/home/show.php";
     }
 
 }//fin class
 
-echo "<br>Mostrando contenidos con la Dwes";
+//echo "<br>Mostrando contenidos con la Dwes";
 //Paa usar nuestra clase orimero aasignamos una variable
 

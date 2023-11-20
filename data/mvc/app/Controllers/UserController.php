@@ -2,21 +2,33 @@
 
 //Ejercicio del Namespace
 namespace App\Controllers;
+require "../app/models/User.php";
+ use App\Models\User;
 
 
     class UserController{
         //methodo 
         function __construct()
         {
-            echo "<br> construyendo user controller";
+           // echo "<br> construyendo user controller";
 
         }
         
         function index(){
+            $users = User::all(); //Si es estatico
+            //Para probar que funciona
+            //print_r($users);
+            //die();
             require "../Views/user/index.php";
         }
-        function show(){
-            echo "<br> En el show de USER";
+        function show($args){
+            $id = (int)$args[0];
+            $user = User::find($id);
+            require "../Views/user/show.php";
+            
+        }
+        function create(){//Esto se creara las vistas usuarios
+            require "../Views/user/create.php";
         }
   
    

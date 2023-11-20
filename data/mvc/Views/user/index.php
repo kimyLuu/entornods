@@ -22,8 +22,29 @@
 
     <?php require "../Views/common/header.php"?>
     <!-- Begin page content -->
+
     <main role="main" class="container">
       <h1 class="mt-5">Listado General de la App</h1>
+      <h1>Lista de Usuarios</h1>
+      <table>
+        <tr>
+            <th>Name</th>
+            <th> Surname </th>
+            <th>Email</th>
+            <th>Birthdate</th>
+        </tr>
+        <?php foreach($users as $user){?>
+            <tr>
+                <td><?php echo $user ->name ?></td>
+                <td><?php echo $user ->surname ?></td>
+                <td><?php echo $user ->email ?></td>
+                <td><?php echo $user ->birthdate ?></td>
+                
+                <td><a href="/user/show/<?php echo $user->id?>">Ver Usuario</a></td>
+            </tr>
+
+            <?php } ?>
+    </table>
       <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
      
     </main>

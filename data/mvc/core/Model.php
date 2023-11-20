@@ -10,6 +10,8 @@ use const DSN;
 use const USUARIO;
 use const PASSWORD;
 
+#[\AllowDynamicProperties]
+
     class Model{
         static function db(){
 
