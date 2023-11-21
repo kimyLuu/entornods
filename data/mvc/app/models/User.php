@@ -54,8 +54,20 @@ class User extends Model{
         return  $user;
         
     }
-    public static function insert(){
-        echo "<br>inserto registro";
+    public  function insert(){
+       // echo "<br>inserto registro";
+       $dbh= self::db();
+
+       $sql ="INSERT * INTO users (name , surname , email, birthdate)
+       VALUES(:nombre, :apellido,:email,:fechanac)";
+         $statement =$dbh-> prepare($sql);
+
+       $statement->bindValue(":nombre",$this->name);
+       $statement->bindValue(":apellido",$this->surname);
+       $statement->bindValue(":email",$this->email);
+       $statement->bindValue(":fechanac",$this->birthdate);
+       $statement->execute();
+           
 
     }
     public static function save(){//Recupero registro actualizando datos
