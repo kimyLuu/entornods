@@ -35,18 +35,20 @@
         </tr>
         <?php foreach($users as $user){?>
             <tr>
-                <td><?php echo $user ->name ?></td>
-                <td><?php echo $user ->surname ?></td>
-                <td><?php echo $user ->email ?></td>
-                <td><?php echo $user ->birthdate ?></td>
+                <td><?php echo $user->name ?></td>
+                <td><?php echo $user->surname ?></td>
+                <td><?php echo $user->email ?></td>
+                <td><?php echo $user->birthdate ?></td>
                 
                 <td><a href="/user/show/<?php echo $user->id?>">Ver Usuario</a></td>
+                <td>&nbsp</td>
+                <td><a href="/user/edit/<?php echo $user->id?>">Modificar usuario</a></td> <!--Botom editar llama al controlador  no al modelo-->
+                <td>&nbsp</td>
+                <td><a href="/user/delete/<?php echo $user->id?>" onclick="return confirm('Estas segurps de borrarlo')"> Borrar Usuario</a></td>
             </tr>
 
             <?php } ?>
     </table>
-      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
-     
     </main>
 
    

@@ -28,7 +28,7 @@ class User extends Model{
             return $users;
             
         
-        echo "<br> Recupero un usuario";
+       // echo "<br> Recupero un usuario";
         
     }//fin class
 
@@ -58,24 +58,50 @@ class User extends Model{
        // echo "<br>inserto registro";
        $dbh= self::db();
 
-       $sql ="INSERT * INTO users (name , surname , email, birthdate)
-       VALUES(:nombre, :apellido,:email,:fechanac)";
-         $statement =$dbh-> prepare($sql);
+       $sql ="INSERT INTO users (name,surname,email,birthdate)
+       VALUES(:nombre, :apellidos,:email,:fechnac)";
+         $statement =$dbh->prepare($sql);
 
        $statement->bindValue(":nombre",$this->name);
-       $statement->bindValue(":apellido",$this->surname);
+       $statement->bindValue(":apellidos",$this->surname);
        $statement->bindValue(":email",$this->email);
-       $statement->bindValue(":fechanac",$this->birthdate);
-       $statement->execute();
+       $statement->bindValue(":fechnac",$this->birthdate);
+       return $statement->execute();
            
 
     }
-    public static function save(){//Recupero registro actualizando datos
-        echo "<br>Actualizando registro";
+    
+    public function save(){//Recupero registro actualizando datos
+        //echo "<br>Actualizando registro";
+       //En aqui no se insertada sino actualizara la base de datos 
+
+       $dbh= self::db();
+
+       $sql ="UPDATE users  
+       SET name=:nombre,surname =:apellidos,email= :email,birthdate=:fechnac 
+       WHERE id=:id";
+         $statement =$dbh->prepare($sql);
+        $statement->bindValue(":id",$this->id);
+       $statement->bindValue(":nombre",$this->name);
+       $statement->bindValue(":apellidos",$this->surname);
+       $statement->bindValue(":email",$this->email);
+       $statement->bindValue(":fechnac",$this->birthdate);
+       return $statement->execute();
+           
+
 
     }
-    public static function delete(){
-        echo "<br>Borro el  registro";
+    public  function delete(){
+      //  echo "<br>Borro el  registro";
+      $dbh= self::db();
+
+      $sql ="DELETE FROM users
+      WHERE id=:id";
+
+        $statement =$dbh->prepare($sql);
+        $statement->bindValue(":id",$this->id);
+
+       return $statement->execute();
 
     }
 }
