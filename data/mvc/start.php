@@ -21,5 +21,6 @@ CON ESTOO SE VERIFICA QUE FUNCIONAENL MODEL
     $user->insert();
     
 */
-require "core/App.php";
+require 'vendor/autoload.php';
+
 $app = new Core\App(); 

@@ -5,6 +5,8 @@ use PDOException;
 //se usa el require
 //Para leer
 require "../config/db.php";
+
+
 //Para el uso de esto
 use const DSN;
 use const USUARIO;

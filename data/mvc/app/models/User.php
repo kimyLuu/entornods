@@ -5,7 +5,8 @@
 
 namespace App\Models;
 
-require "../core/Model.php";
+//require "../core/Model.php";
+
 use Core\Model;//Importamos el fichero
 use PDO;
 

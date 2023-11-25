@@ -1,0 +1,19 @@
+{
+    "name": "alumno/mvc",
+    "authors": [
+        {
+            "name": "Lucero Acuña",
+            "email": "alucerosoledad@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { 
+            "Core\\": "core/",
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Models\\": "app/models/"
+        }
+    },
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}
