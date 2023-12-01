@@ -8,10 +8,18 @@ namespace App\Models;
 //require "../core/Model.php";
 
 use Core\Model;//Importamos el fichero
+use DateTime;
 use PDO;
+
 
 //En esta clase se 
 class User extends Model{
+
+  //contructor para controlar la fecha
+  public function __construct()
+  {
+    $this->birthdate=DateTime::createFromFormat('Y-m-d', $this->birthdate); //cada vez que recupere la fecha del usuario , vendra en este formato      
+  }
   
         //Extraigo todos los registros de user de la tabla user
 
@@ -24,7 +32,9 @@ class User extends Model{
             $sql = "SELECT *  FROM users"; //llamo a la tabla users
             $statement =$dbh ->query($sql);
             $statement ->setFetchMode(PDO::FETCH_CLASS , User::class); //carga atributos de esa clase
-            $users= $statement->fetchAll(PDO::FETCH_CLASS);
+            $users= $statement->fetchAll(PDO::FETCH_CLASS, User::class);
+           // $users= $statement->fetchAll(PDO::FETCH_CLASS, "App\\Model\\User"); esta es otra manera segugn la documentacion pero tienes que poner todo porque tiene un namesace
+
             //devuelve un array ->users
             return $users;
             
@@ -51,7 +61,8 @@ class User extends Model{
         //fetch class los crea automaticamente , atributos de mi tabla ->$name, $username
         //Para acceder a essos atributos , $user = new User();
 
-        $user =$statement->fetch(PDO::FETCH_CLASS);      
+        $user =$statement->fetch(PDO::FETCH_CLASS);   
+           
         return  $user;
         
     }
@@ -105,5 +116,37 @@ class User extends Model{
        return $statement->execute();
 
     }
+
+    /*Estabblecer un pasword un parametro  el pasword en text plano*/
+
+    public function setPassword($password){
+      $dbh =self::db();
+      /*El pasword se tiene que cifrar Se pasa el pasword que quiero cifrar  */
+      $hashedPassword = password_hash($password , PASSWORD_BCRYPT);
+      $sql ="UPDATE users SET password = :password WHERE id=:id ";
+
+      $statement =$dbh->prepare($sql);
+      $statement->bindValue(":id",$this->id);
+       $statement->bindValue(":password",$hashedPassword);
+
+       return $statement->execute();
+
+    }
+
+
+    /*Estabblecer un pasword un parametro  el pasword le pasas la contrasena a verificar y el usuario para que se vea si coinciden */
+
+    public function passwordVerify($password, $user) {
+      return password_verify($password, $user->password);
+  }
+
+    /*Crear un enlace por cada usuario en la que se le resetee a una password pr defecto.
+    
+    -Crea un boton enlace(enlace) para resetear todos los password de todos los usuarios de la base de datos a un password por defecto*/
+
+    /*Crear un metodo para convertir el index.php en pdf
+    utilzando dompdf , buscar en la documentacion */
+    
+
 }
 

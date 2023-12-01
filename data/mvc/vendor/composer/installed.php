@@ -3,7 +3,7 @@
         'name' => 'alumno/mvc',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c435fe6bb602b0bc1953a1966ee308c337fb7e43',
+        'reference' => 'f9e9f803ce7f8d01551d368fd566fcadbd201f6f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'alumno/mvc' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c435fe6bb602b0bc1953a1966ee308c337fb7e43',
+            'reference' => 'f9e9f803ce7f8d01551d368fd566fcadbd201f6f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

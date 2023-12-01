@@ -1,59 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
+  <title>Sticky Footer Navbar Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 
-    <!-- Custom styles for this template -->
-    <link href="/css/sticky-footer-navbar.css" rel="stylesheet">
-  </head>
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-  <body>
+  <!-- Custom styles for this template -->
+  <link href="/css/sticky-footer-navbar.css" rel="stylesheet">
+</head>
 
-    <?php require "../Views/common/header.php"?>
-    <!-- Begin page content -->
+<body>
 
-    <main role="main" class="container">
-      <h1 class="mt-5">Listado General de la App</h1>
-      <h1>Lista de Usuarios</h1>
-      <table>
+  <?php require "../Views/common/header.php" ?>
+  <!-- Begin page content -->
+
+  <main role="main" class="container">
+    <h1 class="mt-5">Listado General de la App</h1>
+    <h1>Lista de Usuarios</h1>
+    <a href="/user/create">Crear</a>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th> Surname </th>
+        <th>Email</th>
+        <th>Birthdate</th>
+      </tr>
+      <?php foreach ($users as $user) { ?>
         <tr>
-            <th>Name</th>
-            <th> Surname </th>
-            <th>Email</th>
-            <th>Birthdate</th>
+          <td><?php echo $user->name ?></td>
+          <td><?php echo $user->surname ?></td>
+          <td><?php echo $user->email ?></td>
+          <td><?php echo $user->birthdate->format('d/m/Y') ?></td> <!--Ya formateada se imprimira como le asignes d/m/Y-->
+          <td>&nbsp</td>
+          <td>&nbsp</td>
+          <td><a href="/user/show/<?php echo $user->id ?>">Ver Usuario</a></td>
+          <td>&nbsp</td>
+          <td>&nbsp</td>
+          <td><a href="/user/edit/<?php echo $user->id ?>">Modificar usuario</a></td> <!--Botom editar llama al controlador  no al modelo-->
+          <td>&nbsp</td>
+          <td>&nbsp</td>
+          <td><a href="/user/delete/<?php echo $user->id ?>" onclick="return confirm('Estas segurps de borrarlo')"> Borrar Usuario</a></td>
+          <td>&nbsp</td>
+          <td>&nbsp</td>
+          <td><a href="/user/resetpassword/<?php echo $user->id ?>" onclick="return confirm('Estas seguros de resetear')"> resetear Usuario</a></td> <!--Botom editar llama al controlador  no al modelo-->
+
         </tr>
-        <?php foreach($users as $user){?>
-            <tr>
-                <td><?php echo $user->name ?></td>
-                <td><?php echo $user->surname ?></td>
-                <td><?php echo $user->email ?></td>
-                <td><?php echo $user->birthdate ?></td>
-                
-                <td><a href="/user/show/<?php echo $user->id?>">Ver Usuario</a></td>
-                <td>&nbsp</td>
-                <td><a href="/user/edit/<?php echo $user->id?>">Modificar usuario</a></td> <!--Botom editar llama al controlador  no al modelo-->
-                <td>&nbsp</td>
-                <td><a href="/user/delete/<?php echo $user->id?>" onclick="return confirm('Estas segurps de borrarlo')"> Borrar Usuario</a></td>
-            </tr>
 
-            <?php } ?>
+      <?php } ?>
     </table>
-    </main>
+    <td>&nbsp</td>
+    <td><a href="/user/resetAllPasswords" onclick="return confirm('Estas seguros de resetear')"> Resetear todas las contraseñas</a></td>
 
-   
-<?php require "../Views/common/footer.php"?>
-<?php require "../Views/common/scripts.php"?>
+  </main>
 
-  </body>
+
+  <?php require "../Views/common/footer.php" ?>
+  <?php require "../Views/common/scripts.php" ?>
+
+</body>
+
 </html>
